@@ -93,6 +93,7 @@ int rng2;
 int main() {
     srand(time(nullptr));
 
+    std::cout << " \n";
     std::cout << "Enter your fighter's name: ";
     getline(std::cin, playerName);
     std::cout << " \n";
@@ -253,7 +254,7 @@ int main() {
         fighter(playerName,  playerStrikingDef, playerTakeDown  ,playerHealth, 0)
     };
     fighter lightweight[21] = {
-        fighter("John Smith",  75, 80, 85, 0),
+        fighter("Caden Doan",  75, 80, 85, 0),
         fighter("Islam Makhachev",  80, 80, 80, 0),
         fighter("Arman Tsarukyan", 80, 75, 80, 0),
         fighter("Charles Oliveira",  75, 85, 80, 0),
@@ -488,7 +489,7 @@ int main() {
     for (int i = 0; i < 4; i++) { //assigning the arrays for function purposes
         strikeNames[i] = playerStrikingAttacks[i].attackName;
         strikeLevels[i] = playerStrikingAttacks[i].level;
-        strikeCosts[i] = grapplerStrikingAttacks[i].cost;
+        strikeCosts[i] = playerStrikingAttacks[i].cost;
         topAttackNames[i] = playerTopGroundAttacks[i].attackName;
         topAttackLevels[i] = playerTopGroundAttacks[i].level;
         topAttackCosts[i] = playerTopGroundAttacks[i].cost;

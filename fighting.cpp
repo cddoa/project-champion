@@ -26,6 +26,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
     bool firstPromptSelected;
     std::string temp;
     int maxStamina = playerStamina;
+    int wrongSelectCounter;
+    bool wrongSelection;
 
     std::string opponentStrikes[6] = {"Right Hook", "Left Hook", "Liver Hook", "Head Kick", "Right Overhand", "Body Kick"};
     std::string opponentSubmissionsTop[3] = {"Arm Bar", "Arm Triangle", "Rear Naked Choke"};
@@ -46,6 +48,9 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
             standing = true; //round always starts standing
             onGroundTop = false;
             onGroundBottom = false;
+
+            wrongSelectCounter = 0;
+            wrongSelection = false;
 
             if (i > 1) { // player can recover up to 20 stamina at the beginning of each round after the 1st
                 rng = 1 + (rand() % 20);
@@ -132,6 +137,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             onGroundTop = false;
                             rng2 = 1 + (rand() % 5);
                             playerHealth -= rng2;
+                            std::cout << "Your Health: " << playerHealth << "\n";
+                            std::cout << "\n";
                             firstPromptSelected = true;
                         }
 
@@ -161,6 +168,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             onGroundTop = false;
                             rng2 = 1 + (rand() % 5);
                             playerHealth -= rng2;
+                            std::cout << "Your Health: " << playerHealth << "\n";
+                            std::cout << "\n";
                             firstPromptSelected = true;
                         }
                         else if (rng > 70 && rng <= 100) { // opponent defends takedown and is on top of you, position switch
@@ -171,6 +180,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             onGroundTop = false;
                             rng2 = 1 + (rand() % 5);
                             playerHealth -= rng2;
+                            std::cout << "Your Health: " << playerHealth << "\n";
+                            std::cout << "\n";
                             firstPromptSelected = true;
                         }
 
@@ -242,7 +253,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             std::cout << "Your Stamina: " << playerStamina << "\n";
                             std::cout << "\n";
                             std::cout << "---------------------------\n";
-                            std::cout << "Your Attacks:\n";
+                            std::cout << "Attack - Cost \n";
                             std::cout << "\n";
                             for (int i = 1; i <= 4; i++) { //displays attacks and their costs
 
@@ -262,11 +273,21 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                 attackChosen = (std::stoi(playerInput));
                                 attackChosen --;
 
-                                if (strikeNames[attackChosen] == " ") {
+                                if (strikeNames[attackChosen] == " " || strikeCosts[attackChosen] > playerStamina) {
                                 
                                     std::cout << "\n";
                                     std::cout << "Not an option\n";
                                     std::cout << "\n";
+                                    wrongSelectCounter ++;
+
+                                    if (wrongSelectCounter > 1){ //player chooses invalid option twice
+
+                                        wrongSelection = true;
+                                        selectionValid = true;
+                                        attackTurnUsed = true;
+
+                                       // break;
+                                 }
                                 
                                 } 
                                 else {
@@ -281,8 +302,10 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             }
 
                         }
-                   
 
+                        
+                   
+                        if (wrongSelection == false){
                            if (strikeLevels[attackChosen] > opponentStriking) { //if the attack's level is greater than the opponent's striking
                                rng = 1 + (rand() % 100);
 
@@ -415,7 +438,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                            }
 
                         }
-                        
+                    }
                                                            
 
                     else if (onGroundTop == true) { //ground combat (top)
@@ -429,7 +452,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             std::cout << "Your Stamina: " << playerStamina << "\n";
                             std::cout << "\n";
                             std::cout << "---------------------------\n";
-                            std::cout << "Your Attacks:\n";
+                            std::cout << "Attack - Cost\n";
                             std::cout << "\n";
 
                             for (int i = 1; i <= 4; i++) { //displays attacks
@@ -451,13 +474,24 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                 attackChosen = (std::stoi(playerInput));
                                 attackChosen--;
                             
-                                if (topAttackNames[attackChosen] == " ") {
+                                if (topAttackNames[attackChosen] == " " || topAttackCosts[attackChosen] > playerStamina) {
 
                                     std::cout << "\n";
                                     std::cout << "Not an option\n";
                                     std::cout << "\n";
+                                    wrongSelectCounter ++;
+
+                                    if (wrongSelectCounter > 1){ //player chooses invalid option twice
+
+                                        wrongSelection = true;
+                                        selectionValid = true;
+                                        attackTurnUsed = true;
+
+                                       // break;
+                                 }
 
                                 }
+
                                 else {
                                     selectionValid = true;
                                 }
@@ -471,6 +505,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
 
                         }
 
+                    if (wrongSelection == false){
                         if (topAttackLevels[attackChosen] > opponentGrappling) { //if level of attack is greater than the opponent's grappling
                         
                             if (attackChosen == 0) { //ground and pound
@@ -620,6 +655,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             }
                         }
                     }
+                    }
 
                     if (onGroundBottom == true) { //ground combat (bottom)
                   
@@ -628,7 +664,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             std::cout << "Your Stamina: " << playerStamina<< "\n";
                             std::cout << "\n";
                             std::cout << "---------------------------\n";
-                            std::cout << "Your Attacks:\n";
+                            std::cout << "Attack - Cost\n";
                             std::cout << "\n";
                             for (int i = 1; i <= 4; i++) { //displays attacks
 
@@ -650,11 +686,21 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                 attackChosen = (std::stoi(playerInput));
                                 attackChosen--;
 
-                                if (strikeNames[attackChosen] == " ") {
+                                if (bottomAttackNames[attackChosen] == " " || bottomAttackCosts[attackChosen] > playerStamina) {
 
                                     std::cout << "\n";
                                     std::cout << "Not an option\n";
                                     std::cout << "\n";
+                                    wrongSelectCounter ++;
+
+                                    if (wrongSelectCounter > 1){ //player chooses invalid option twice
+
+                                        wrongSelection = true;
+                                        selectionValid = true;
+                                        attackTurnUsed = true;
+
+                                       // break;
+                                 }
 
                                 }
                                 else {
@@ -670,6 +716,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
 
                         }
 
+
+                    if (wrongSelection == false){
                         if (bottomAttackLevels[attackChosen] > opponentGrappling ) { //if attack level is greater than opponent's grappling
                         
                             if (bottomAttackNames[attackChosen] == "Get Up") { //if player tries to get up
@@ -873,8 +921,9 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                             }
                        
                         }                                                                                
-                    }
-                  }
+                     }
+                }
+            }
 
                   press_any_key();
                //  
@@ -925,8 +974,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                         std::cout << "\n";
                         std::cout << "You knocked down " << opponentName << " but they recovered!\n";
                         std::cout << "\n";
-                        opponentConditioning = 1 + (rand() % 20);
-                        std::cout << opponentName <<  "'s health: " << opponentConditioning <<"\n";
+                        opponentHealth = 1 + (rand() % 20);
+                        std::cout << opponentName <<  "'s health: " << opponentHealth <<"\n";
                         std::cout << "\n";
 
                     
