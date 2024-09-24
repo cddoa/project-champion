@@ -26,8 +26,10 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
     bool firstPromptSelected;
     std::string temp;
     int maxStamina = playerStamina;
+    int maxHealth = playerHealth;
     int wrongSelectCounter;
     bool wrongSelection;
+    int recoveryCounter = 0;
 
     std::string opponentStrikes[6] = {"Right Hook", "Left Hook", "Liver Hook", "Head Kick", "Right Overhand", "Body Kick"};
     std::string opponentSubmissionsTop[3] = {"Arm Bar", "Arm Triangle", "Rear Naked Choke"};
@@ -52,13 +54,20 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
             wrongSelectCounter = 0;
             wrongSelection = false;
 
-            if (i > 1) { // player can recover up to 20 stamina at the beginning of each round after the 1st
+            if (i > 1) { // player can recover up to 20 stamina and 10 health at the beginning of each round after the 1st
                 rng = 1 + (rand() % 20);
+                rng2 = 1 + (rand() % 10);
 
                 playerStamina += rng;
+                playerHealth += rng2;
 
-                if (playerStamina > maxStamina) {
+                if (playerStamina > maxStamina) { //making sure recovered stamina/health does not go past max stats
                     playerStamina = maxStamina;
+                }
+
+                if (playerHealth > maxHealth){
+                    playerHealth = maxHealth;
+
                 }
             }
 
@@ -68,12 +77,18 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
             std::cout << "ROUND " << i << "\n";
             std::cout << "--------\n";
             std::cout << "\n";
+
+            if (i > 1){
+                std::cout << "You recovered " << rng <<" stamina and " << rng2 << " health\n";
+                std::cout << "\n";
+                std::cout << "\n";
+            }
+
+
             std::cout << opponentName << "'s" << " Health: " << opponentHealth << "\n";
             std::cout << "\n";
             std::cout << "Your Health: " << playerHealth << "\n";
             std::cout << "\n";
-            std::cout << "\n";
-            std::cout << "You recovered " << rng << " stamina\n";
             std::cout << "\n";
             std::cout << "Your Stamina: " << playerStamina<< "\n";
             
@@ -951,6 +966,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
 
                 if (opponentHealth <= 0) {
 
+                    if (recoveryCounter > 1){
+
                     rng = 1 + (rand() % 100);
                 
                     if (rng > (opponentConditioning / 2)) {
@@ -979,15 +996,30 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                         }
                     }
 
-                    else { //recovery
+                    else { //opponent recovery
+
+                        
                         std::cout << "\n";
                         std::cout << "You knocked down " << opponentName << " but they recovered!\n";
                         std::cout << "\n";
                         opponentHealth = 1 + (rand() % 20);
                         std::cout << opponentName <<  "'s health: " << opponentHealth <<"\n";
                         std::cout << "\n";
+                        recoveryCounter ++;
+                        
+                    }
+                    }
 
-                    
+                    else {
+                            std::cout << "\n";
+                            std::cout << "----------------------------------------------------------------------------\n";
+                            std::cout << "\n";
+                            std::cout << "You Won against " << opponentName << " via Round " << i << " KO\n";
+                            std::cout << "\n";
+                            std::cout << "----------------------------------------------------------------------------\n";
+                            std::cout << "\n";
+                            return true;
+
                     }
 
                 }
