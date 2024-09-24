@@ -73,6 +73,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
             std::cout << "Your Health: " << playerHealth << "\n";
             std::cout << "\n";
             std::cout << "\n";
+            std::cout << "You recovered " << rng << " stamina\n";
+            std::cout << "\n";
             std::cout << "Your Stamina: " << playerStamina<< "\n";
             
             attackTurnUsed = false;
@@ -305,7 +307,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
 
                         
                    
-                        if (wrongSelection == false){
+                        if (wrongSelection == false){ //player is only allowed to attack if they make less than 2 wrong selections
+
                            if (strikeLevels[attackChosen] > opponentStriking) { //if the attack's level is greater than the opponent's striking
                                rng = 1 + (rand() % 100);
 
@@ -321,6 +324,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    std::cout << "\n";
                                    std::cout << opponentName <<"'s Health: " << opponentHealth << "\n";
                                    std::cout << "\n";
+                                   playerStamina -= strikeCosts[attackChosen];
+
                                    onGroundTop = false;
                                    onGroundBottom = false;
                                    standing = true;
@@ -340,6 +345,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    std::cout << "\n";
                                    std::cout << opponentName << "'s Health: " << opponentHealth << "\n";
                                    std::cout << "\n";
+                                   playerStamina -= strikeCosts[attackChosen];
+
                                    onGroundTop = false;
                                    onGroundBottom = false;
                                    standing = true;
@@ -355,6 +362,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    playerHealth -= damageDone;
                                    std::cout << "Your Health: " << playerHealth << "\n";
                                    std::cout << "\n";
+                                   playerStamina -= strikeCosts[attackChosen];
+
                                    onGroundTop = false;
                                    onGroundBottom = false;
                                    standing = true;
@@ -380,6 +389,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    std::cout << "\n";
                                    std::cout << opponentName << "'s Health: " << opponentHealth << "\n";
                                    std::cout << "\n";
+                                   playerStamina -= strikeCosts[attackChosen];
+
                                    onGroundTop = false;
                                    onGroundBottom = false;
                                    standing = true;
@@ -397,6 +408,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    std::cout << "\n";
                                    std::cout << opponentName << "'s Health: " << opponentHealth << "\n";
                                    std::cout << "\n";
+                                   playerStamina -= strikeCosts[attackChosen];
+
                                    onGroundTop = false;
                                    onGroundBottom = false;
                                    standing = true;
@@ -415,6 +428,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    std::cout << "\n";
                                    std::cout << opponentName << "'s Health: " << opponentHealth << "\n";
                                    std::cout << "\n";
+                                   playerStamina -= strikeCosts[attackChosen];
+
                                    onGroundTop = false;
                                    onGroundBottom = false;
                                    standing = true;
@@ -429,6 +444,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    playerHealth -= rng2;
                                    std::cout << "Your Health: " << playerHealth << "\n";
                                    std::cout << "\n";
+                                   playerStamina -= strikeCosts[attackChosen];
+
                                    onGroundTop = false;
                                    onGroundBottom = false;
                                    standing = true;
@@ -506,6 +523,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                         }
 
                     if (wrongSelection == false){
+
                         if (topAttackLevels[attackChosen] > opponentGrappling) { //if level of attack is greater than the opponent's grappling
                         
                             if (attackChosen == 0) { //ground and pound
@@ -525,6 +543,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << opponentName << "'s Health: " << opponentHealth << "\n";
                                     std::cout << "\n";
+                                    playerStamina -= topAttackCosts[attackChosen];
+
                                     onGroundTop = true;
                                     onGroundBottom = false;
                                     standing = false;
@@ -542,6 +562,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << opponentName << "'s Health: " << opponentHealth << "\n";
                                     std::cout << "\n";
+                                    playerStamina -= topAttackCosts[attackChosen];
+
                                     onGroundTop = true;
                                     onGroundBottom = false;
                                     standing = false;
@@ -570,9 +592,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You are now back on your feet\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
+                                    playerStamina -= topAttackCosts[attackChosen];
 
                                     
 
@@ -599,6 +619,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                 std::cout << "\n";
                                 std::cout << opponentName << "'s Health: " << opponentHealth << "\n";
                                 std::cout << "\n";
+                                playerStamina -= topAttackCosts[attackChosen];
+
                                 onGroundTop = true;
                                 onGroundBottom = false;
                                 standing = false;
@@ -626,9 +648,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << opponentName << " is now on top of you in full mount\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 10);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
+                                    playerStamina -= topAttackCosts[attackChosen];
+
                                     onGroundBottom = true;
                                     onGroundTop = false;
                                     standing = false;
@@ -641,9 +662,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You are now back on your feet\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
+                                    playerStamina -= topAttackCosts[attackChosen];
+
                                     onGroundBottom = false;
                                     onGroundTop = false;
                                     standing = true;
@@ -704,7 +724,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
 
                                 }
                                 else {
-                                    selectionValid = true;
+                                    selectionValid = true; 
                                 }
 
                             }
@@ -718,6 +738,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
 
 
                     if (wrongSelection == false){
+
                         if (bottomAttackLevels[attackChosen] > opponentGrappling ) { //if attack level is greater than opponent's grappling
                         
                             if (bottomAttackNames[attackChosen] == "Get Up") { //if player tries to get up
@@ -729,9 +750,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You are now back on your feet\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth <<"\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = true;
                                     onGroundBottom = false;
                                     onGroundTop = false;
@@ -744,6 +764,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     playerHealth -= rng2;
                                     std::cout << "Your Health: " << playerHealth << "\n";
                                     std::cout << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = false;
                                     onGroundBottom = true;
                                     onGroundTop = false;
@@ -761,9 +783,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You are now on top of " << opponentName << " in full mount\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = false;
                                     onGroundBottom = false;
                                     onGroundTop = true;
@@ -773,9 +794,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "You were not able to get on top\n";
                                     std::cout << "\n";
                                     rng2 = 1 + (rand() % 10);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
-                                    std::cout << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = false;
                                     onGroundBottom = true;
                                     onGroundTop = false;
@@ -804,9 +824,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You are now back on your feet\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
 
                                     onGroundTop = false;
                                     onGroundBottom = false;
@@ -831,9 +849,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You are now back on your feet\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = true;
                                     onGroundBottom = false;
                                     onGroundTop = false;
@@ -842,10 +859,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You were not able to get up\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 10);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
-                                    std::cout << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = false;
                                     onGroundBottom = true;
                                     onGroundTop = false;
@@ -863,10 +878,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You are now on top of " << opponentName << " in full mount\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
-                                    std::cout << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = false;
                                     onGroundBottom = false;
                                     onGroundTop = true;
@@ -875,10 +888,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << "You were not able to get on top\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 10);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
-                                    std::cout << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     standing = false;
                                     onGroundBottom = true;
                                     onGroundTop = false;
@@ -908,10 +919,8 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                     std::cout << "\n";
                                     std::cout << opponentName <<" is still on top of you\n";
                                     std::cout << "\n";
-                                    rng2 = 1 + (rand() % 5);
-                                    playerHealth -= rng2;
-                                    std::cout << "Your Health: " << playerHealth << "\n";
-                                    std::cout << "\n";
+                                    playerStamina -= bottomAttackCosts[attackChosen];
+
                                     onGroundTop = false;
                                     onGroundBottom = true;
                                     standing = false;

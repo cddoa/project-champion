@@ -145,10 +145,10 @@ int main() {
     };
 
     attack grapplerTopGroundAttacks[4] = {
-        attack("Ground and pound", 30, 100, 25),
+        attack("Ground and pound", 30, 100, 15),
         attack("Arm Bar", 20, 100, 30),
         attack("Arm Triangle", 20, 100, 30),
-        attack("Rear Naked Choke", 20, 100, 35)
+        attack("Rear Naked Choke", 20, 100, 30)
     };
 
     attack grapplerBottomGroundAttacks[4] = {
@@ -254,7 +254,6 @@ int main() {
         fighter(playerName,  playerStrikingDef, playerTakeDown  ,playerHealth, 0)
     };
     fighter lightweight[21] = {
-        fighter("Caden Doan",  75, 80, 85, 0),
         fighter("Islam Makhachev",  80, 80, 80, 0),
         fighter("Arman Tsarukyan", 80, 75, 80, 0),
         fighter("Charles Oliveira",  75, 85, 80, 0),
@@ -272,12 +271,13 @@ int main() {
         fighter("Paddy Pimblett",  55, 55, 50, 0),
         fighter("Jalin Turner",  30, 20, 25, 0),
         fighter("Jimmy McGill",  21, 30, 25, 0),
+        fighter("Ben Dover",  21, 30, 25, 0),
         fighter("Henry Gooner",  20, 25, 21, 0),
         fighter("Vincent Chan",  25, 21, 21, 0),
         fighter(playerName,  playerStrikingDef, playerTakeDown  ,playerHealth, 0)
     };
     fighter welterweight[21] = {
-        fighter("John Hagen",  75, 80, 85, 0),
+        fighter("John Smith",  75, 80, 85, 0),
         fighter("Belal Muhammad",  80, 80, 80, 0),
         fighter("Shavkat Rakhmonov",  85, 75, 80, 0),
         fighter("Kamaru Usman",  80, 85, 80, 0),
