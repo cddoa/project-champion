@@ -53,9 +53,16 @@ public:
 };
 
 // variables
-std::string playerName;
-int playerStrikingDef = 20; //player striking defense
-int playerTakeDown = 20; //player's takedown/takedown defense stat
+//std::string playerName;
+//int playerStrikingDef = 20; //player striking defense
+
+
+int main() {
+    srand(time(nullptr));
+
+    std::string playerName;
+    int playerStrikingDef = 20; //player striking defense
+    int playerTakeDown = 20; //player's takedown/takedown defense stat
 int playerHealth = 20; //player health
 int playerStamina = 20;
 std::string playerInput;
@@ -90,8 +97,6 @@ bool styleSelected = false;
 std::string fightingStyle;
 int rng2;
 
-int main() {
-    srand(time(nullptr));
 
     std::cout << " \n";
     std::cout << "Enter your fighter's name: ";
@@ -801,7 +806,7 @@ int main() {
                 std::cout << " \n";
                 std::cout << "-------------------------\n";
                 std::cout << " \n";
-                std::cout << "Your conditioning: " << playerHealth << " \n";
+                std::cout << "Your health: " << playerHealth << " \n";
                 std::cout << " \n";
                 std::cout << "-------------------------\n";
                 std::cout << "\n";

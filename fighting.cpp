@@ -375,8 +375,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    std::cout << "\n";
                                    damageDone = 1 + (rand() % 5);
                                    playerHealth -= damageDone;
-                                   std::cout << "Your Health: " << playerHealth << "\n";
-                                   std::cout << "\n";
+                                   
                                    playerStamina -= strikeCosts[attackChosen];
 
                                    onGroundTop = false;
@@ -457,8 +456,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                                    std::cout << "\n";
                                    rng2 = 1 + (rand() % 5);
                                    playerHealth -= rng2;
-                                   std::cout << "Your Health: " << playerHealth << "\n";
-                                   std::cout << "\n";
+                                  
                                    playerStamina -= strikeCosts[attackChosen];
 
                                    onGroundTop = false;
@@ -966,7 +964,7 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
 
                 if (opponentHealth <= 0) {
 
-                    if (recoveryCounter > 1){
+                    
 
                     rng = 1 + (rand() % 100);
                 
@@ -1005,24 +1003,14 @@ bool fighting(int playerStriking, int playerGrappling, int playerConditioning, i
                         opponentHealth = 1 + (rand() % 20);
                         std::cout << opponentName <<  "'s health: " << opponentHealth <<"\n";
                         std::cout << "\n";
-                        recoveryCounter ++;
                         
+                        
+                    
                     }
-                    }
-
-                    else {
-                            std::cout << "\n";
-                            std::cout << "----------------------------------------------------------------------------\n";
-                            std::cout << "\n";
-                            std::cout << "You Won against " << opponentName << " via Round " << i << " KO\n";
-                            std::cout << "\n";
-                            std::cout << "----------------------------------------------------------------------------\n";
-                            std::cout << "\n";
-                            return true;
-
-                    }
-
                 }
+                   
+
+                
                 
 
             //opponent attack phase
